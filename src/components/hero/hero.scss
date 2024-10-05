@@ -1,0 +1,170 @@
+@import "../../app.scss";
+
+@font-face {
+  font-family: 'GodOfWar';
+  src: url('C:\\Users\\Ayush\\introduction\\src\\fonts\\GODOFWAR.TTF') format('truetype');
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url('C:\\Users\\Ayush\\introduction\\src\\fonts\\Montserrat-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Lora';
+  src: url('C:\\Users\\Ayush\\introduction\\src\\fonts\\Lora-Regular.ttf') format('truetype');
+}
+
+.hero {
+  overflow: hidden;
+  background-image: url("/background8.jpeg");
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+
+  .wrapper {
+    max-width: 1366px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 1rem;
+
+    .textContainer {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+
+      h1 {
+        font-size: 2rem;
+        font-family: 'Oswald', sans-serif;
+        margin-top: 8rem; // Reduced margin
+      }
+
+      .logoTextContainer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: -16rem; // Reduced margin
+
+        .meshcraftText {
+          width: auto;
+          height: 700px; // Size adjustment
+        }
+      }
+
+      .horizontalList {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap; // Adjust for smaller screens
+        list-style: none;
+        padding: 0;
+        margin: -15rem 0 0 0; // Reduced margin
+
+        li {
+          font-size: 1.4rem;
+          font-family: 'Lora', serif;
+          line-height: 1.6;
+          color: white;
+          margin: 0.5rem 1rem;
+          position: relative;
+
+          &::before {
+            content: '•';
+            color: white;
+            position: absolute;
+            left: -1rem;
+          }
+        }
+      }
+
+      .scrollButton {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+
+        img {
+          width: 30px;
+        }
+      }
+    }
+
+    .imageContainer {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 2rem 0;
+
+      img {
+        max-width: 100%;
+        height: auto;
+        object-fit: cover;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .wrapper {
+      padding: 0.5rem;
+
+      .textContainer {
+        h1 {
+          font-size: 1.5rem;
+          margin-top: 3rem; // Reduced margin
+        }
+
+        .logoTextContainer {
+          .meshcraftText {
+            height: 160px; // Adjusted for smaller screens
+          }
+        }
+
+        .horizontalList {
+          li {
+            font-size: 1rem;
+            margin: 0.5rem;
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 480px) {
+    .wrapper {
+      .textContainer {
+        h1 {
+          font-size: 1.2rem;
+          margin-top: 2rem; // Reduced margin
+        }
+
+        .logoTextContainer {
+          .meshcraftText {
+            height: 250px; // Adjusted for smaller screens
+          }
+        }
+
+        .horizontalList {
+          li {
+            font-size: 0.9rem;
+            margin: 0.3rem;
+          }
+        }
+      }
+    }
+  }
+}

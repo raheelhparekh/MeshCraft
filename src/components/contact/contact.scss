@@ -1,0 +1,133 @@
+@import "../../app.scss"; 
+
+.contact {
+  height: 100%;
+  width: 100%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 50px;
+  padding: 20px;
+  text-align: center;
+  background: linear-gradient(135deg, #000000, #2c2c2c);
+  background-size: cover;
+  background-position: center; 
+  background-repeat: no-repeat;
+
+  @include tablet {
+    padding: 10px;
+  }
+
+  @include mobile {
+    padding: 5px;
+    gap: 30px;
+  }
+
+  .textContainer {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; 
+    text-align: center;
+    gap: 80px; 
+
+    @include mobile {
+      gap: 20px;
+    }
+
+    h1 {
+      font-size: 100px;
+      line-height: 88px;
+
+      @include mobile {
+        font-size: 36px;
+      }
+    }
+
+    .infoContainer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center; 
+      gap: 60px; 
+
+      @include mobile {
+        gap: 20px;
+      }
+
+      .item {
+        display: flex;
+        align-items: center;
+        gap: 10px; 
+
+        .icon {
+          font-size: 40px;
+          color: white;
+
+          @include mobile {
+            font-size: 30px;
+          }
+        }
+
+        h2 {
+          font-size: 24px;
+          margin-bottom: 5px; 
+
+          @include mobile {
+            font-size: 18px;
+          }
+        }
+
+        span {
+          font-weight: 300;
+          font-size: 18px;
+
+          @include mobile {
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+
+  .socialMediaContainer {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: auto; 
+    margin-bottom: 20px;
+
+    @include mobile {
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    a {
+      display: block;
+      width: 40px; 
+      height: 40px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin-top: -70px; 
+      position: relative; 
+      transition: transform 0.3s ease-out;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      &:hover {
+        transform: scale(1.1); 
+      }
+
+      @include mobile {
+        width: 30px;
+        height: 30px;
+      }
+    }
+  }
+}
