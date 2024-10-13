@@ -1,7 +1,29 @@
 @import "../../app.scss"; 
 
-.contact {
+.contact-container {
+  position: relative; /* Relative positioning for children */
+  height: 100vh; /* Full height of the viewport */
+  overflow: hidden; /* Hide overflow for parallax effect */
+}
+
+.parallax {
+  background-image: url('/image.jpg'); /* Update with your image path */
+  position: absolute;
+  top: 0;
+  left: 0;
   height: 100%;
+  width: 100%;
+  background-attachment: fixed; /* Key to parallax effect */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover; /* Ensure it covers the entire container */
+  z-index: -1; /* Behind the content */
+}
+
+.contact {
+  position: relative; /* Ensure this is on top */
+  z-index: 1; /* Above the background */
+  height: 100%; /* Maintain full height */
   width: 100%;
   margin: auto;
   display: flex;
@@ -11,10 +33,7 @@
   gap: 50px;
   padding: 20px;
   text-align: center;
-  background: linear-gradient(135deg, #000000, #2c2c2c);
-  background-size: cover;
-  background-position: center; 
-  background-repeat: no-repeat;
+  background: rgba(44, 44, 44, 0.7); /* Semi-transparent overlay for better readability */
 
   @include tablet {
     padding: 10px;

@@ -28,7 +28,6 @@ const Contact = () => {
 
   const sendEmail = (e) => {
     e.preventDefault();
-
     emailjs
       .sendForm(
         "service_94y20xo",
@@ -47,69 +46,72 @@ const Contact = () => {
   };
 
   return (
-    <motion.div
-      ref={ref}
-      className="contact"
-      variants={variants}
-      initial="initial"
-      whileInView="animate"
-    >
-      <motion.div className="textContainer" variants={variants}>
-        <motion.h1 variants={variants}>Let’s work together</motion.h1>
-        <motion.div className="infoContainer" variants={variants}>
-          <motion.div className="item" variants={variants}>
-            <span className="material-icons icon">email</span>
-            <div>
-              <h2>meshcraftassets@gmail.com</h2>
-            </div>
-          </motion.div>
-          <motion.div className="item" variants={variants}>
-            <span className="material-icons icon">location_on</span>
-            <div>
-              <h2>Mumbai</h2>
-            </div>
-          </motion.div>
-          <motion.div className="item" variants={variants}>
-            <span className="material-icons icon">phone</span>
-            <div>
-              <h2>+91 9321576721</h2>
-            </div>
+    <div className="contact-container">
+      <div className="parallax"></div> {/* Background image */}
+      <motion.div
+        ref={ref}
+        className="contact"
+        variants={variants}
+        initial="initial"
+        whileInView="animate"
+      >
+        <motion.div className="textContainer" variants={variants}>
+          <motion.h1 variants={variants}>Let’s work together</motion.h1>
+          <motion.div className="infoContainer" variants={variants}>
+            <motion.div className="item" variants={variants}>
+              <span className="material-icons icon">email</span>
+              <div>
+                <h2>meshcraftassets@gmail.com</h2>
+              </div>
+            </motion.div>
+            <motion.div className="item" variants={variants}>
+              <span className="material-icons icon">location_on</span>
+              <div>
+                <h2>Mumbai</h2>
+              </div>
+            </motion.div>
+            <motion.div className="item" variants={variants}>
+              <span className="material-icons icon">phone</span>
+              <div>
+                <h2>+91 9321576721</h2>
+              </div>
+            </motion.div>
           </motion.div>
         </motion.div>
-      </motion.div>
 
-      {/* Social Media Links */}
-      <div className="socialMediaContainer">
-        <a
-          href="https://www.linkedin.com/company/meshcraftassets/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img src="/linkedin.jpg" alt="Discord" />
-        </a>
-        <a
-          href="https://discord.com/invite/sUJ6hSKfYk"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img src="/Discord.jpg" alt="Discord" />
+        {/* Social Media Links */}
+        <div className="socialMediaContainer">
+          <a
+            href="https://www.linkedin.com/company/meshcraftassets/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img src="/linkedin.jpg" alt="LinkedIn" />
           </a>
-        <a
-          href="https://www.youtube.com/@MeshCraftAssets/videos"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img src="/youtube.png" alt="Youtube" />
-        </a>
-        <a
-          href="https://www.instagram.com/meshcraftassets/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img src="/instagram.png" alt="Instagram" />
-        </a>
-      </div>
-    </motion.div>
+          <a
+            href="https://discord.com/invite/sUJ6hSKfYk"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img src="/Discord.jpg" alt="Discord" />
+          </a>
+          <a
+            href="https://www.youtube.com/@MeshCraftAssets/videos"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img src="/youtube.png" alt="YouTube" />
+          </a>
+          <a
+            href="https://www.instagram.com/meshcraftassets/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img src="/instagram.png" alt="Instagram" />
+          </a>
+        </div>
+      </motion.div>
+    </div>
   );
 };
 
