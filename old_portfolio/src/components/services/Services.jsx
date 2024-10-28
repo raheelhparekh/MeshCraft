@@ -19,9 +19,30 @@ const variants = {
   },
 };
 
+const ctaVariants = {
+  hover: {
+    scale: 1.05,
+    backgroundColor: "#FF8C00",
+    transition: {
+      duration: 0.3,
+    },
+  },
+  tap: {
+    scale: 0.95,
+  },
+};
+
+const contentVariants = {
+  hover: {
+    backgroundColor: "rgba(255, 255, 255, 0.1)",
+    transition: {
+      duration: 0.3,
+    },
+  },
+};
+
 const Services = () => {
   const ref = useRef();
-
   const isInView = useInView(ref, { margin: "-100px" });
 
   return (
@@ -39,6 +60,7 @@ const Services = () => {
         </p>
         <hr />
       </motion.div>
+
       <motion.div className="titleContainer" variants={variants}>
         <div className="title">
           <h1>
@@ -56,15 +78,17 @@ const Services = () => {
               className="what-we-do"
               whileHover={{ color: "orange" }}
             >
+              What We Do
             </motion.span>
           </h1>
-          
         </div>
       </motion.div>
+
       <motion.div className="listContainer" variants={variants}>
         <motion.div
           className="content"
-          whileHover={{ background: "rgba(255, 255, 255, 0.1)" }}
+          variants={contentVariants}
+          whileHover="hover"
         >
           <h2>Who We Are</h2>
           <ul>
@@ -76,7 +100,8 @@ const Services = () => {
         </motion.div>
         <motion.div
           className="content"
-          whileHover={{ background: "rgba(255, 255, 255, 0.1)" }}
+          variants={contentVariants}
+          whileHover="hover"
         >
           <h2>What We Offer</h2>
           <ul>
@@ -88,7 +113,8 @@ const Services = () => {
         </motion.div>
         <motion.div
           className="content"
-          whileHover={{ background: "rgba(255, 255, 255, 0.1)" }}
+          variants={contentVariants}
+          whileHover="hover"
         >
           <h2>Why Choose Us</h2>
           <ul>
@@ -98,6 +124,26 @@ const Services = () => {
             <li>Innovation-driven</li>
           </ul>
         </motion.div>
+      </motion.div>
+
+      {/* Call-to-Action Buttons */}
+      <motion.div className="ctaContainer">
+        <motion.button
+          className="cta-button"
+          variants={ctaVariants}
+          whileHover="hover"
+          whileTap="tap"
+        >
+          Get in Touch
+        </motion.button>
+        <motion.button
+          className="cta-button"
+          variants={ctaVariants}
+          whileHover="hover"
+          whileTap="tap"
+        >
+          Learn More
+        </motion.button>
       </motion.div>
     </motion.div>
   );
