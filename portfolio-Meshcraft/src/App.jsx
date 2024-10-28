@@ -12,7 +12,6 @@ const App = () => {
   const navigate = useNavigate();
   const [showScrollButton, setShowScrollButton] = useState(false);
   const [scrollDirection, setScrollDirection] = useState("down");
-  const [currentIndex, setCurrentIndex] = useState(0);
 
   const homeRef = useRef(null);
   const servicesRef = useRef(null);
@@ -20,18 +19,24 @@ const App = () => {
   const contactRef = useRef(null);
 
   const sectionRefs = [
-    { ref: homeRef, path: "/", component: HomePage },
-    { ref: servicesRef, path: "/services", component: ServicesPage },
-    { ref: portfolioRef, path: "/portfolio", component: PortfolioPage },
-    { ref: contactRef, path: "/contact", component: ContactPage },
+    { ref: homeRef, path: "/" },
+    { ref: servicesRef, path: "/services" },
+    { ref: portfolioRef, path: "/portfolio" },
+    { ref: contactRef, path: "/contact" },
   ];
 
-  const scrollToSection = (index) => {
-    const targetRef = sectionRefs[index]?.ref;
-    if (targetRef && targetRef.current) {
-      targetRef.current.scrollIntoView({ behavior: "smooth" });
-      setCurrentIndex(index);
+  // Scroll to specific section when clicking on sidebar link
+  const scrollToSection = (ref) => {
+    ref.current.scrollIntoView({ behavior: "smooth" });
+  };
+
+  // Sidebar click handler for smooth scrolling
+  const handleSidebarClick = (path) => {
+    const section = sectionRefs.find((s) => s.path === path);
+    if (section && section.ref.current) {
+      scrollToSection(section.ref); // Trigger smooth scroll
     }
+    navigate(path, { replace: true }); // Update route in URL
   };
 
   useEffect(() => {
@@ -44,13 +49,15 @@ const App = () => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          const sectionIndex = sectionRefs.findIndex((s) => s.ref.current === entry.target);
-          if (sectionIndex >= 0) {
-            navigate(sectionRefs[sectionIndex].path, { replace: true });
-            setCurrentIndex(sectionIndex);
+          const section = sectionRefs.find((s) => s.ref.current === entry.target);
+          if (section) {
+            navigate(section.path, { replace: true });
+            setShowScrollButton(section.path === "/" || section.path === "/contact");
 
-            setShowScrollButton(true);
-            setScrollDirection(sectionIndex === 0 ? "down" : sectionIndex === sectionRefs.length - 1 ? "up" : null);
+            // Set scroll direction based on section
+            if (section.path === "/") setScrollDirection("down");
+            else if (section.path === "/contact") setScrollDirection("up");
+            else setScrollDirection(null);
           }
         }
       });
@@ -70,25 +77,31 @@ const App = () => {
   return (
     <div className="relative scroll-smooth snap-y snap-mandatory overflow-y-scroll h-screen">
       <Cursor />
-      <Sidebar />
+      <Sidebar onLinkClick={handleSidebarClick} />
 
       {/* Sections */}
-      {sectionRefs.map(({ ref, component: Component }, index) => (
-        <section key={index} ref={ref} className="h-screen snap-start">
-          <Component />
-        </section>
-      ))}
+      <section ref={homeRef} className="h-screen snap-start">
+        <HomePage />
+      </section>
+      <section ref={servicesRef} className="h-screen snap-start">
+        <ServicesPage />
+      </section>
+      <section ref={portfolioRef} className="h-screen snap-start">
+        <PortfolioPage />
+      </section>
+      <section
+        ref={contactRef}
+        className="min-h-[50vh] snap-start flex items-center justify-center bg-gray-900 text-white"
+      >
+        <ContactPage />
+      </section>
 
       {/* Scroll button */}
       {showScrollButton && (
         <div className="fixed bottom-8 right-8">
           <button
             onClick={() => {
-              if (scrollDirection === "down") {
-                scrollToSection(currentIndex + 1);
-              } else if (scrollDirection === "up") {
-                scrollToSection(currentIndex - 1);
-              }
+              scrollDirection === "down" ? scrollToSection(servicesRef) : scrollToSection(homeRef);
             }}
             className="p-3 rounded-full bg-black text-white transition"
           >

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const sidebarVariants = {
   open: {
@@ -38,9 +38,8 @@ const linkVariants = {
   },
 };
 
-const Sidebar = () => {
+const Sidebar = ({ onLinkClick }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const navigate = useNavigate();
   const items = [
     { name: "Homepage", path: "/" },
     { name: "Services", path: "/services" },
@@ -48,14 +47,11 @@ const Sidebar = () => {
     { name: "Contact", path: "/contact" },
   ];
 
-  const handleLinkClick = (path) => {
-    setIsOpen(false); // Close the sidebar
-    navigate(path); // Navigate to the selected route
-  };
-
   return (
     <motion.div
-      className="fixed top-0 left-0 z-20 h-screen w-screen bg-white text-black lg:flex flex-col items-center justify-center"
+      className={`fixed top-0 left-0 z-20 h-screen w-screen bg-white text-black ${
+        isOpen ? "flex" : "hidden"
+      } lg:flex flex-col items-center justify-center`}
       animate={isOpen ? "open" : "closed"}
       initial="closed"
       variants={sidebarVariants}
@@ -78,12 +74,15 @@ const Sidebar = () => {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
             >
-              <span
-                onClick={() => handleLinkClick(item.path)}
-                className="cursor-pointer hover:text-orange-500"
+              <button
+                onClick={() => {
+                  onLinkClick(item.path); // Pass path to parent handler
+                  setIsOpen(false); // Close sidebar on link click
+                }}
+                className="hover:text-orange-500"
               >
                 {item.name}
-              </span>
+              </button>
             </motion.div>
           ))}
         </motion.div>
